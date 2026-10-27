@@ -1,0 +1,21 @@
+services:
+  backend:
+    build: ./backend
+    container_name: tablebooker-backend
+    environment:
+      DATABASE_URL: sqlite:////code/data/tablebooker.db
+    volumes:
+      - db-data:/code/data      # SQLite file survives container restarts
+    ports:
+      - "8000:8000"             # API + Swagger UI at http://localhost:8000/docs
+
+  frontend:
+    build: ./frontend
+    container_name: tablebooker-frontend
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"               # App at http://localhost:8080
+
+volumes:
+  db-data:
