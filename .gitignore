@@ -6,3 +6,5 @@ __pycache__/
 backend/data/
 .venv/
 .pytest_cache/
+backend/mutants/
+backend/reports/
